@@ -24,7 +24,7 @@ export async function addTopic(data: FormData) {
 
 export async function addQuestion(question: FormData) {
   try {
-    insertQuestion({
+    await insertQuestion({
       title: question.get("title") as string,
       topic_id: question.get("topic_id") as string,
       votes: 0,
@@ -38,7 +38,7 @@ export async function addQuestion(question: FormData) {
 
 export async function addVote(data: FormData) {
   try {
-    incrementVotes(data.get("id") as string);
+    await incrementVotes(data.get("id") as string);
     revalidatePath("/ui/topics/[id]", "page");
   } catch (error) {
     console.error("Database Error:", error);
