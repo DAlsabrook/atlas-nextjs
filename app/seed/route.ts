@@ -3,7 +3,7 @@ import { db } from "@vercel/postgres";
 import { users, topics, questions } from "../../lib/placeholder-data";
 
 const client = await db.connect();
-
+// test test DB connection
 async function seedUsers() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await client.sql`
