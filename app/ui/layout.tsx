@@ -1,19 +1,12 @@
-import React from "react"
-import Image from "next/image"
-import Link from "next/link"
-import SideNav from "@/components/Sidenav"
+import SideNav from "@/components/Sidenav";
 
-type uiProps = {
-    children: React.ReactNode
-}
-
-export default function UILayout ({children}: uiProps) {
-    return (
-        <div className='flex flex-col md:flex-row h-screen w-screen'>
-            <div className="md:w-82">
-                <SideNav/>
-            </div>
-            {children}
-        </div>
-    )
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+      <div className="w-full flex-none md:w-64">
+        <SideNav />
+      </div>
+      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
+    </div>
+  );
 }

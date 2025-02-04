@@ -1,7 +1,5 @@
-import { TopicsSkeleton } from "@/components/Skeletons"
+import { TopicsSkeleton } from "@/components/Skeletons";
 
-export default function uiLoading () {
-    return (
-        <TopicsSkeleton/>
-    )
+export default function Loading() {
+  return <TopicsSkeleton />;
 }
