@@ -16,7 +16,7 @@ export default function Page() {
               Discover our suite of tools and services to build, deploy, and
               scale your web applications with ease.
             </p>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+            <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
               <form
                 action={async () => {
                   "use server";
@@ -37,9 +37,11 @@ export default function Page() {
             </div>
           </div>
           <Image
-            src={placeholder}
+            src='/home-image.png'
             alt="Hero"
             className="mx-auto aspect-square overflow-hidden rounded-xl object-cover w-full max-w-[550px]"
+            width={200}
+            height={200}
           />
         </div>
       </div>
