@@ -12,7 +12,7 @@ import Layout from '../../layout';
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    // await new Promise((r) => setTimeout(r, 3000));
+    // await new Promise((r) => setTimeout(r, 1000));
     const questions = await fetchQuestions(id);
     const topic = await fetchTopic(id);
 
