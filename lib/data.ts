@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { Question, Topic, User } from "./definitions";
 
+
 export async function fetchUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
@@ -75,5 +76,23 @@ export async function incrementVotes(id: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to increment votes.");
+  }
+}
+
+export async function removeTopic(id: string) {
+  try {
+    try {
+      await sql`BEGIN`;
+      await sql`DELETE FROM questions WHERE topic_id = ${id}`;
+      const data = await sql`DELETE FROM topics WHERE id = ${id} RETURNING *`;
+      await sql`COMMIT`;
+      return data.rows;
+    } catch (error) {
+      await sql`ROLLBACK`;
+      throw error;
+    }
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to remove topic and its related questions.");
   }
 }

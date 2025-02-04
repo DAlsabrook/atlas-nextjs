@@ -1,8 +1,13 @@
 import { AskQuestion } from '@/components/AskQuestion';
 import { HashtagIcon } from '@heroicons/react/24/outline';
 import { fetchQuestions } from '@/lib/data';
-import { fetchTopic } from '@/lib/data';
+import { fetchTopic, removeTopic } from '@/lib/data';
 import { Question } from '@/components/Question';
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import Layout from '../../layout';
+
 
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
@@ -17,6 +22,14 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         <div className='w-full h-full p-6'>
             <h1 className="flex text-3xl items-center">
                 <HashtagIcon className="h-6 w-6 mr-2" /> {topic.title}
+                <form action={async () => {
+                    'use server'
+                    await removeTopic(id)
+                    redirect('/ui')
+                }}>
+                    <input name="itemId" className="hidden" defaultValue={id}/>
+                    <button className='w-10 rounded-lg p-1 ml-4 border-2' type="submit"><TrashIcon/></button>
+                </form>
             </h1>
             <AskQuestion topic={id}/>
             {questions.map((question) => (
