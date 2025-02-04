@@ -9,8 +9,10 @@ type uiProps = {
 
 export default function UILayout ({children}: uiProps) {
     return (
-        <div className='flex flex-col md:flex-row'>
-            <SideNav/>
+        <div className='flex flex-col md:flex-row h-screen w-screen'>
+            <div className="md:w-82">
+                <SideNav/>
+            </div>
             {children}
         </div>
     )

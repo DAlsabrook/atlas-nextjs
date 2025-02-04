@@ -1,5 +1,7 @@
+import CreateTopicForm from "@/components/CreateTopicForm"
+
 export default function New () {
     return (
-        <div>New page</div>
+        <CreateTopicForm/>
     )
 }
