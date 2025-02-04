@@ -19,14 +19,14 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                 <HashtagIcon className="h-6 w-6 mr-2" /> {topic.title}
             </h1>
             <AskQuestion topic={id}/>
-            {questions ? (questions.map((question) => {
+            {questions.map((question) => (
                 <Question
                     key={question.id}
                     id={question.id}
                     text={question.title}
                     votes={question.votes}
                 />
-            })):(<></>)}
+            ))}
         </div>
     )
 }

@@ -2,7 +2,6 @@ import TopicLink from "./TopicLink";
 import { fetchTopics } from "@/lib/data";
 
 export default async function TopicLinks() {
-
   const topics = await fetchTopics();
 
   return (
