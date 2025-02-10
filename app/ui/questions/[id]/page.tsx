@@ -11,7 +11,6 @@ export default async function Answers({ params }: { params: Promise<{   id: stri
     const answers = await fetchAnswers(id)
     const markedAnswer = questions[0].answer_id
 
-    console.log("Answer ID: ", markedAnswer)
     return (
         <div className='w-full h-full p-1'>
             <h1 className="flex text-3xl items-center">

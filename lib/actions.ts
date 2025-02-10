@@ -67,7 +67,7 @@ export async function markAnswer(data: FormData) {
       answer_id: data.get("answer_id") as string,
       id: data.get("id") as string,
     });
-    revalidatePath("/ui/questions/[id]", "page");
+    revalidatePath("/ui/questions", "page");
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to add vote.");
