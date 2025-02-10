@@ -10,7 +10,11 @@ export default async function Answers({ params }: { params: Promise<{   id: stri
     const title = questions[0] ? questions[0].title : 'Question not found';
     const answers = await fetchAnswers(id)
     const markedAnswer = questions[0].answer_id
-
+    const sortedAnswers = [...answers].sort((a, b) => {
+        if (a.id === markedAnswer) return -1;
+        if (b.id === markedAnswer) return 1;
+        return 0;
+    });
     return (
         <div className='w-full h-full p-1'>
             <h1 className="flex text-3xl items-center">
@@ -18,8 +22,7 @@ export default async function Answers({ params }: { params: Promise<{   id: stri
                 {title}
             </h1>
             <SubmitAnswer id={id}/>
-            {answers.map((answer) => (
-                // <p key={answer.id}>{answer.answer}</p>
+            {sortedAnswers.map((answer) => (
                 <Answer
                 key={answer.id}
                 id={answer.id}
