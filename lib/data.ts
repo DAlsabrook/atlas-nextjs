@@ -78,6 +78,19 @@ export async function insertQuestion(
   }
 }
 
+export async function insertAnswer(
+  answer: Pick<Answer, "answer" | "question_id">
+) {
+  try {
+    const data =
+      await sql<Answer>`INSERT INTO answers (answer, question_id) VALUES (${answer.answer}, ${answer.question_id})`;
+    return data.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to add question.");
+  }
+}
+
 export async function insertTopic(topic: Pick<Topic, "title">) {
   try {
     const data =
@@ -116,5 +129,23 @@ export async function removeTopic(id: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to remove topic and its related questions.");
+  }
+}
+
+export async function insertMark(question: Pick<Question, "answer_id" | "id">) {
+  try {
+    try {
+      await sql`BEGIN`;
+      await sql<Question>`UPDATE questions SET answer_id = NULL WHERE id = ${question.id} AND answer_id IS NOT NULL`;
+      const data = await sql<Question>`UPDATE questions SET answer_id = ${question.answer_id} WHERE id = ${question.id}`;
+      await sql`COMMIT`;
+      return data.rows;
+    } catch (error) {
+      await sql`ROLLBACK`;
+      throw error;
+    }
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to mark the answer as accepted.");
   }
 }
