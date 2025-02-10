@@ -10,7 +10,7 @@ type AnswerProps = {
 
 export function Answer({ id, text, question_id, isMarked }: AnswerProps) {
   return (
-    <div className="flex items-center border-l border-r border-t border-atlas-white-300 p-6 first:rounded-t-md last:rounded-b-md last:border-b">
+    <div className="flex items-center border-l border-r border-t border-atlas-white-300 px-5 first:rounded-t-md last:rounded-b-md last:border-b">
         <p className="text w-full text-left">{text}</p>
 
         {/* Mark as accepted form */}
