@@ -25,7 +25,7 @@ export async function LoggedInUser(props: LoggedInUserProps) {
             </div>
         )}
         <span className="text-sm font-medium">
-            {props.name}
+            {props.name || 'Test user'}
         </span>
       </div>
     )
