@@ -12,6 +12,7 @@ import { LoggedInUser } from "./LoggedInUser"
 export default async function SideNav() {
   const session = await auth();
   const user = session?.user;
+  console.log(user)
   if (!user) return
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
