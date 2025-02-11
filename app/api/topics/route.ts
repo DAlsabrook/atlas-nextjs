@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 import { fetchTopics } from "@/lib/data"
 
-export async function GET(request: NextApiRequest) {
+export async function GET(request: NextRequest) {
     try {
         const data = await fetchTopics()
         return Response.json(data)
