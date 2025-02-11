@@ -56,6 +56,7 @@ export async function fetchQuestion(id: string) {
 
 export async function fetchAnswers(id: string) {
   try {
+    console.log('here')
     const data =
       await sql<Answer>`SELECT * FROM answers WHERE question_id = ${id}`;
     return data.rows;
