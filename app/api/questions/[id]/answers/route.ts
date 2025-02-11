@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchAnswers } from '@/lib/data';
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id?: string }> }) {
   const { id } = await context.params;
 
-  
+
   if (!id) {
     return NextResponse.json({ error: 'Invalid question ID' }, { status: 400 });
   }
