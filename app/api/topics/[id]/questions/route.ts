@@ -4,7 +4,6 @@ import { fetchQuestions } from '@/lib/data';
 export async function GET(req: NextRequest, context: { params: { id: string } }) {
   const { id } = await context.params;
 
-
   if (!id) {
     return NextResponse.json({ error: 'Invalid topic ID' }, { status: 400 });
   }
