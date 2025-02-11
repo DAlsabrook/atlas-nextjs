@@ -17,6 +17,7 @@ export async function LoggedInUser(props: LoggedInUserProps) {
             className="h-8 w-8 rounded-full"
             width={32}
             height={32}
+            unoptimized
             />
         ) : (
             <div className="h-8 w-8 rounded-full bg-gray-300 font-extrabold text-5xl flex items-center justify-center overflow-hidden">
